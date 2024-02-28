@@ -11,7 +11,7 @@ class ProductManager {
         }
 
         if(this.isDuplicatedCode(product.code)) {
-            console.error("El código (code) del producto ya está en uso");
+            console.error(`El código (code) del producto ${product.title} ya está en uso`);
             return;
         }
 
