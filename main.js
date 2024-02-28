@@ -42,7 +42,7 @@ class ProductManager {
 }
 
 const product = new ProductManager();
-
+/* 
 product.addProduct({
     title: "Arqueador de pestañas",
     description: "Produto para arquear pestañas de color azul",
@@ -80,4 +80,4 @@ product.addProduct({
 });
 
 console.log(product.getProducts());
-console.log(product.getProductById(2));
+console.log(product.getProductById(2)); */
