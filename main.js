@@ -5,12 +5,18 @@ class ProductManager {
     }
 
     addProduct(product) {
-        if(!this.isValidProduct(product)) {
+        if(!product.title ||
+            !product.description ||
+            !product.price ||
+            !product.thumbnail ||
+            !product.code ||
+            product.stock === undefined
+        ) {
             console.error("Todos los campos del producto son obligatorios");
             return;
         }
 
-        if(this.isDuplicatedCode(product.code)) {
+        if(this.products.some(prod => prod.code === product.code)) {
             console.error(`El código (code) del producto ${product.title} ya está en uso`);
             return;
         }
@@ -18,21 +24,6 @@ class ProductManager {
         let id = ProductManager.idProduct++
 
         this.products.push({ id, ...product});
-    }
-
-    isValidProduct(product) {
-        return (
-            product.title &&
-            product.description &&
-            product.price &&
-            product.thumbnail &&
-            product.code &&
-            product.stock !== undefined
-        );
-    }
-
-    isDuplicatedCode(code) {
-        return this.products.some(product => product.code === code);
     }
 
     getProducts() {
@@ -52,7 +43,7 @@ class ProductManager {
 
 const product = new ProductManager();
 
-/* product.addProduct({
+product.addProduct({
     title: "Arqueador de pestañas",
     description: "Produto para arquear pestañas de color azul",
     price: 2100,
@@ -89,4 +80,4 @@ product.addProduct({
 });
 
 console.log(product.getProducts());
-console.log(product.getProductById(2)); */
+console.log(product.getProductById(2));
